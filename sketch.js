@@ -22,13 +22,13 @@ function setup() {
     ground = Bodies.rectangle(width / 2, height - 25, width, 15, { isStatic: true });
     World.add(world, ground);
 
-    ball = new Paper(200, 500, 60, 60);
+    ball = new Paper(200, 200, 60, 60);
 
     dustbin1 = new Dustbin(725, height - 120, 30, 150);
     dustbin2 = new Dustbin(975, height - 120, 30, 150);
     dustbin3 = new Dustbin(850, height - 80, 250, 40);
 
-    //launch = new Launcher(ball.body, { x: 200, y: 340 });
+    launch = new Launcher(ball.body, { x: 200, y: 340 });
 
 	Engine.run(engine);
 }
@@ -41,22 +41,16 @@ function draw() {
     ball.display();
     imageMode(CENTER);
     image(dustbinImage, 850, 450, 250, 260);
-    //launch.display();
+    launch.display();
 
     drawSprites();
 }
 
-function mousePressed() {
-	if(keyCode === 32) {
-		Matter.Body.applyForce(ball.body, ball.body.position, {x: 170, y: -170});
-	}
-}
-
-/*function mouseDragged() {
+function mouseDragged() {
     Matter.Body.setPosition(ball.body, { x: mouseX, y: mouseY });
 }
 
 function mouseReleased() {
     launch.fly();
     console.log("mouseReleased");
-}*/
+}
